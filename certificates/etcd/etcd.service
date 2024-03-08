@@ -5,9 +5,9 @@ Documentation=https://github.com/coreos
 
 [Service]
 ExecStart=/usr/local/bin/etcd \
-  --cert-file=/home/kazama/Documents/repos/cks-practice/certificates/etcd/etcd.crt \
-  --key-file=/home/kazama/Documents/repos/cks-practice/certificates/etcd/etcd.key \
-  --trusted-ca-file=/home/kazama/Documents/repos/cks-practice/certificates/CA/ca.crt \
+  --cert-file=//root/cks-practice/certificates/etcd/etcd.crt \
+  --key-file=//root/cks-practice/certificates/etcd/etcd.key \
+  --trusted-ca-file=//root/cks-practice/certificates/CA/ca.crt \
   --client-cert-auth \
   --listen-client-urls https://127.0.0.1:2379 \
   --advertise-client-urls https://127.0.0.1:2379 \
