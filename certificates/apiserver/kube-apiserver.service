@@ -1,0 +1,20 @@
+cat <<EOF | sudo tee /etc/systemd/system/kube-apiserver.service
+[Unit]
+Description=Kubernetes API Server
+Documentation=https://github.com/kubernetes/kubernetes
+
+[Service]
+ExecStart=/usr/local/bin/kube-apiserver \
+--advertise-address=192.168.2.13 \
+--etcd-cafile=/home/kazama/Documents/repos/cks-practice/certificates/CA/ca.crt \
+--etcd-certfile=/home/kazama/Documents/repos/cks-practice/certificates/apiserver/apiserver.crt \
+--etcd-keyfile=/home/kazama/Documents/repos/cks-practice/certificates/apiserver/apiserver.key \
+--etcd-servers=https://127.0.0.1:2379 \
+--service-account-key-file=/home/kazama/Documents/repos/cks-practice/certificates/service-account/service-account.crt \
+--service-cluster-ip-range=10.0.0.0/24 \
+--service-account-signing-key-file=/home/kazama/Documents/repos/cks-practice/certificates/service-account/service-account.key \
+--service-account-issuer=https://127.0.0.1:6443 
+
+[Install]
+WantedBy=multi-user.target
+EOF
