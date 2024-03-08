@@ -1,0 +1,11 @@
+## Generating the CA key
+openssl genrsa -out ca.key 2048
+
+## Generating the CAs CSR
+openssl req -new -key ca.key -subj "/CN=CA" -out ca.csr
+
+## Self signing the CSR to create a certificate
+openssl x509 -req -in ca.csr -signkey ca.key -CAcreateserial  -out ca.crt -days 1000
+
+## Remove the CSR
+rm -f ca.csr

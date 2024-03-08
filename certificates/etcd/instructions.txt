@@ -1,0 +1,11 @@
+## Generating the etcd key
+openssl genrsa -out etcd.key 2048
+
+## Generating the etcd CSR
+openssl req -new -key etcd.key -subj "/CN=etcd" -out etcd.csr -config etcd.cnf
+
+## Signing CSR with Certificate Authority Certificate
+openssl x509 -req -in etcd.csr -CA ../CA/ca.crt -CAkey ../CA/ca.key -CAcreateserial -out etcd.crt -extensions v3_req -extfile etcd.cnf -days 1000
+
+## Remove the CSR
+rm -f ca.csr
